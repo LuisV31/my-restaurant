@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.home-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+.banner-section {
+    padding: 20px;
+    text-align: center; /* Center everything in the banner */
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-section h1 {
+    font-size: 5em;
+    font-weight: bold;
+    color: #d23f31;
+    text-shadow: 2px 2px 4px #000000;
+    margin: 20px 0 ;
+    font-family: "Lobster", sans-serif;
+}
+
+/* Styling for the buttons */
+.banner-section button {
+    font-size: 1.3em;
+    padding: 5px 0;
+    margin: 0 10px;
+    background-color: transparent;
+    color: #FFFFFF; /*Button text color*/
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, text-shadow 0.3s;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+    border-bottom: 2px solid transparent;
+}
+
+.banner-section button:hover, .banner-section button:focus {
+    color: #d23f31;
+    border-bottom-color: #d23f31;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Main Section */
+.main-section {
+    background-size: cover;
+    background-position: center;
+    height: 580px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-section p {
+    background: rgba(0,0, 0, 0.5);
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Visit us section */
+.visitUs-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.visitUs-section h2 {
+    font-size: 2em;
+    margin: 5px 0;
+}
+
+.visitUs-section address {
+    font-size: 1.5em;
+}
+.visitUs-section h2, .visitUs-section address {
+    color: #007bff;
+    font-family: 'Lobster', cursive;
+}

@@ -1,12 +1,54 @@
 import instagramLogoPath from './images/instagram.png';
 import facebookLogoPath from './images/facebook.png';
 import youTubeLogoPath from './images/youtube.png';
+import woodBackground from './images/woodBackground.jpg';
 
-function loadContact() {
+const createBannerSection = () => {
+    const banner = document.createElement('div');
+    banner.classList.add('banner-section');
+
+    banner.style.backgroundImage = `url('${woodBackground}')`;
+    banner.style.backgroundSize = 'cover';
+    banner.style.backgroundRepeat = 'no-repeat';
+
+    const restaurantName = document.createElement('h1');
+    restaurantName.textContent = 'Taqueria Don Luis';
+    banner.appendChild(restaurantName);
+
+    // Navigation button container
+    const navContainer = document.createElement('div');
+    navContainer.classList.add('nav-container');
+
+    // Home button
+    const homeButton = document.createElement('button');
+    homeButton.textContent = 'Home'
+    homeButton.setAttribute('data-tab', 'home');
+    navContainer.appendChild(homeButton);
+
+    // Menu button 
+    const menuButton = document.createElement('button');
+    menuButton.textContent = 'Menu';
+    menuButton.setAttribute('data-tab', 'menu');
+    navContainer.appendChild(menuButton);
+
+    // Contact button
+    const contactButton = document.createElement('button');
+    contactButton.textContent = 'Contact Us';
+    contactButton.setAttribute('data-tab', 'contact');
+    navContainer.appendChild(contactButton);
+
+    banner.appendChild(navContainer); // Append the navContainer to the banner
+
+    return banner;
+};
+
+const loadContact = () => {
     const content = document.getElementById('content');
     content.innerHTML = ''; // Clear current content
 
-    const header = document.createElementById('h1');
+    content.appendChild(createBannerSection());
+
+    const header = document.createElement('h1');
     header.textContent = 'Contact and Follow us';
     content.appendChild(header);
 
@@ -35,6 +77,6 @@ function loadContact() {
     youTubeLogo.src = youTubeLogoPath;
     youTubeLogo.alt = 'Follow us on YouTube';
     socialMediaDiv.appendChild(youTubeLogo);
-}
+};
 
 export default loadContact;
