@@ -1,88 +1,67 @@
-import woodBackground from './images/woodBackground.jpg';
+import createBannerSection from "./banner";
+import createBottomSection from "./visitUs";
+import paperBackgroundImage from './images/paperbackground.webp';
+import menuBackground from './images/menu-background.webp'
 
 // Menu data structure 
 const menuItems = {
     tacos: [
+        { name: 'Prime Steak', price: 7.10 },
         { name: 'Carne Asada', price: 4.20 },
         { name: 'Pork Al Pastor', price: 4.20 },
-        { name: 'Prime Steak', price: 7.10 },
     ],
     drinks: [
-        { name: 'Horchata', sizes: { small: 3.00, large: 5.00 } },
-        { name: 'Limon', sizes: { small: 3.00, large: 5.00 } },
-        { name: 'Jamaica', sizes: { small: 3.00, large: 5.00 } },
+        { name: 'Limon'},
+        { name: 'Jamaica'},
+        { name: 'Horchata'},
     ],
     sides: [
-        { name: 'Arroz/Spanish Rice', price: 3.00 },
-        { name: 'Frijoles/Beans', price: 3.00 },
+        { name: 'Frijoles/Beans'},
+        { name: 'Arroz/Spanish Rice'},
+        { name: 'Tortilla Chips & Salsa'},
     ],
-};
-
-const createBannerSection = () => {
-    const banner = document.createElement('div');
-    banner.classList.add('banner-section');
-
-    banner.style.backgroundImage = `url('${woodBackground}')`;
-    banner.style.backgroundSize = 'cover';
-    banner.style.backgroundRepeat = 'no-repeat';
-
-    const restaurantName = document.createElement('h1');
-    restaurantName.textContent = 'Taqueria Don Luis';
-    banner.appendChild(restaurantName);
-
-    // Navigation button container
-    const navContainer = document.createElement('div');
-    navContainer.classList.add('nav-container');
-
-    // Home button
-    const homeButton = document.createElement('button');
-    homeButton.textContent = 'Home'
-    homeButton.setAttribute('data-tab', 'home');
-    navContainer.appendChild(homeButton);
-
-    // Menu button 
-    const menuButton = document.createElement('button');
-    menuButton.textContent = 'Menu';
-    menuButton.setAttribute('data-tab', 'menu');
-    navContainer.appendChild(menuButton);
-
-    // Contact button
-    const contactButton = document.createElement('button');
-    contactButton.textContent = 'Contact Us';
-    contactButton.setAttribute('data-tab', 'contact');
-    navContainer.appendChild(contactButton);
-
-    banner.appendChild(navContainer); // Append the navContainer to the banner
-
-    return banner;
 };
 
 // Helper function to create a menu item
-const createMenuItem = (itemName, price) => {
+const createMenuItemWithPrices = (itemName, price) => {
     const item = document.createElement('p');
     item.textContent = `${itemName} - $${price.toFixed(2)}`;
     return item;
 };
 
-// Helper function to create a menu item w/sizes
-const createMenuItemWithSizes = (itemName, sizes) => {
+// Helper function to create a menu item w/o prices
+const createMenuItem = (itemName) => {
     const item = document.createElement('p');
-    item.textContent = `${itemName} - Sm: $${sizes.small.toFixed(2)} Lrg: $${sizes.large.toFixed(2)}`;
+    item.textContent = itemName;
     return item;
 };
 
 // Helper function to create menu section
 const createMenuSection = (sectionTitle, items) => {
     const sectionDiv = document.createElement('div');
+    sectionDiv.className = `${sectionTitle.toLowerCase()}`;
+
     const header = document.createElement('h2');
     header.textContent = sectionTitle;
     sectionDiv.appendChild(header);
 
-    items.forEach((item) => {
+    if (sectionTitle === 'Sides') {
+        const sidePrices = document.createElement('p');
+        sidePrices.className = 'side-prices';
+        sidePrices.textContent = '$3.00 per side';
+        sectionDiv.appendChild(sidePrices);
+    } else if (sectionTitle === 'Drinks') {
+        const drinkPrices = document.createElement('p');
+        drinkPrices.className = 'side-prices'
+        drinkPrices.textContent = 'Small: $3.00 | Large: $5.00'
+        sectionDiv.appendChild(drinkPrices);
+    }
+
+    items.forEach(item => {
         if (item.price) {
-            sectionDiv.appendChild(createMenuItem(item.name, item.price));
+            sectionDiv.appendChild(createMenuItemWithPrices(item.name, item.price));
         } else {
-            sectionDiv.appendChild(createMenuItemWithSizes(item.name, item.sizes));
+            sectionDiv.appendChild(createMenuItem(item.name));
         }
     });
 
@@ -92,24 +71,38 @@ const createMenuSection = (sectionTitle, items) => {
 // Main function to load the menu
 const loadMenu = () => {
     const content = document.getElementById('content');
-    content.innerHTML = ''; // Clear existing content
-
-    content.appendChild(createBannerSection());
+    content.innerHTML = ''; // Clear existing content    
     
+    content.appendChild(createBannerSection());
+
+    const menuBackgroundWrapper = document.createElement('div');
+    menuBackgroundWrapper.className = 'menu-background-wrapper';
+    menuBackgroundWrapper.style.backgroundImage = `url('${menuBackground}')`;
+
+    const menuContainer = document.createElement('div');
+    menuContainer.className = 'menu-section';
+    menuContainer.style.backgroundImage = `url('${paperBackgroundImage}')`;
+
     const menuHeader = document.createElement('h1');
     menuHeader.textContent = 'Our Menu';
-    content.appendChild(menuHeader);
+    menuHeader.className = 'menu-header';
+    menuContainer.appendChild(menuHeader);
+    
+    // Append sections for Tacos, Sides, and Drinks
+    menuContainer.appendChild(createMenuSection('Tacos', menuItems.tacos));
+    menuContainer.appendChild(createMenuSection('Sides',menuItems.sides));
+    menuContainer.appendChild(createMenuSection('Drinks', menuItems.drinks));
 
-    // Create each section of the menu
-    const tacoSection = createMenuSection('Tacos', menuItems.tacos);
-    const drinkSection = createMenuSection('Drinks', menuItems.drinks);
-    const sideSection = createMenuSection('Sides', menuItems.sides);
+    menuBackgroundWrapper.appendChild(menuContainer);
 
     // Append all sections to the content div
-    
-    content.appendChild(tacoSection);
-    content.appendChild(drinkSection);
-    content.appendChild(sideSection);
+    content.appendChild(menuBackgroundWrapper);
+
+    content.appendChild(createBottomSection());
 };
- 
+
 export default loadMenu;
+
+
+
+ 

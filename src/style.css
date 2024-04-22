@@ -1,23 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-.home-container {
+body {
+    margin: 0;
+    background-color: #f7f0e9;
+    color: #333333;
+}
+#content {
+    transition: transform 0.3s ease;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
+    min-height: 100vh;
 }
+
 
 .banner-section {
     padding: 20px;
     text-align: center; /* Center everything in the banner */
     position: relative;
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .banner-section h1 {
     font-size: 5em;
     font-weight: bold;
     color: #d23f31;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     margin: 20px 0 ;
     font-family: "Lobster", sans-serif;
 }
@@ -33,7 +42,7 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, text-shadow 0.3s;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     letter-spacing: 1px;
     border-bottom: 2px solid transparent;
 }
@@ -46,25 +55,35 @@
 
 /* Main Section */
 .main-section {
+    position: relative;
     background-size: cover;
-    background-position: center;
-    height: 580px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    padding-top: 20px;
 }
 
 .main-section p {
-    background: rgba(0,0, 0, 0.5);
-    color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
+    color: #fff; /* White color for contrast */
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Black outline for readability */
+    padding: 10px 20px;
+    font-size: 22px; /* Slightly smaller to reduce bulk */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.8) 100%);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+    max-width: calc(100% - 40px); /* Ensure padding doesn't push the width beyond its parent */
+    position: absolute;
+    top: 10%; /* Position slightly lower to give some top margin visually */
+    left: 50%;
+    transform: translateX(-50%); /* Center align the text */
 }
+
 
 /* Visit us section */
 .visitUs-section {
-    background-color: #f8f9fa;
+    background-color: #e4dbd3;
+    color: #005766;
     padding: 20px;
     text-align: center;
 }
@@ -85,6 +104,143 @@
     font-size: 1.5em;
 }
 .visitUs-section h2, .visitUs-section address {
-    color: #007bff;
+    color: #005766;
     font-family: 'Lobster', cursive;
+}
+
+/* Menu Section */
+
+.menu-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "header header"
+        "tacos sides"
+        "tacos drinks";
+    grid-template-rows: min-content auto auto;
+    gap: 15px; 
+    background-size: cover;
+    border: 5px solid #c0a585;
+    background-color: #f4ecd8;
+    margin: 0px auto;
+    max-width: 900px;
+    box-shadow: 10px 8px 9px 6px rgba(0,0,0,0.1);
+}
+
+.menu-section h2 {
+    font-size: 49px;
+    font-weight: bold;
+    margin: 5px;
+    color: #d23f31;
+}
+
+.menu-section .side-prices {
+    color: #d23f31;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+}
+.menu-section p {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 10px;
+    color: #4e300b;
+}
+.menu-header {
+    grid-area: header;
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+    font-size: 45px;
+    color: #d23f31;
+}
+
+.tacos, .sides, .drinks {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 3px 6px 4px rgba(0,0,0,0.1);
+}
+
+.tacos {
+    grid-area: tacos;
+}
+
+.sides {
+    grid-area: sides;
+}
+
+.drinks {
+    grid-area: drinks;
+}
+
+.menu-background-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+}
+/* Contact Section Styles */
+.contact-section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto; 
+    max-width: 800px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact-header {
+    font-family: 'Lobster', cursive;
+    color: #d23f31;
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    text-align: center;
+}
+.contact-info {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+.contact-info p {
+    font-size: 20px;
+    color: #333;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+
+.contact-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #d23f31;
+    text-shadow: 1px 1px 2px #aaa;
+}
+.contact-info p, .social-media-links img {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.social-media-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media-links img {
+    width: 55px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-media-links img:hover {
+    transform: scale(1.1);
 }
